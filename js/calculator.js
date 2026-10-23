@@ -7,6 +7,7 @@
   const refresh = document.querySelector('#price-refresh');
   const spotPrice = document.querySelector('#gold-spot-price');
   const spotTime = document.querySelector('#gold-spot-time');
+  const priceGrid = document.querySelector('#buy-price-grid');
   const currency = new Intl.NumberFormat('pl-PL', { style: 'currency', currency: 'PLN' });
   const endpoint = 'https://skup-zlota-gorzow.angsm111.workers.dev/api/prices';
   const maxAge = 15 * 60 * 1000;
@@ -15,6 +16,9 @@
   let loading = false;
 
   function update() {
+    priceGrid.querySelectorAll('button[data-purity]').forEach(button => {
+      button.setAttribute('aria-pressed', String(button.dataset.purity === form.elements.purity.value));
+    });
     const weight = form.elements.weight.valueAsNumber;
     const price = prices?.[form.elements.purity.value];
     const validPrice = prices && Date.now() - fetchedAt <= maxAge && Number.isFinite(price) && price > 0;
@@ -55,6 +59,17 @@
       if (!entries.length) throw new Error('No valid gold prices');
       const selected = form.elements.purity.value || '585';
       prices = Object.fromEntries(entries.map(([purity, entry]) => [purity, entry.price]));
+      priceGrid.replaceChildren(...entries.map(([purity, entry]) => {
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.dataset.purity = purity;
+        const label = document.createElement('span');
+        label.textContent = `Próba ${purity}`;
+        const value = document.createElement('strong');
+        value.textContent = currency.format(entry.price);
+        button.append(label, value);
+        return button;
+      }));
       fetchedAt = timestamp;
       spotPrice.textContent = currency.format(spot);
       spotTime.textContent = `Notowanie z ${new Date(timestamp).toLocaleString('pl-PL', { timeZone: 'Europe/Warsaw' })}`;
@@ -63,6 +78,7 @@
       form.elements.purity.disabled = false;
       feedStatus.textContent = `Notowania z ${new Date(timestamp).toLocaleString('pl-PL', { timeZone: 'Europe/Warsaw' })}. Sprawdzamy ceny co minutę.`;
     } catch {
+      priceGrid.textContent = 'Ceny chwilowo niedostępne. Odśwież lub zadzwoń: 601 775 146.';
       spotPrice.textContent = '—';
       spotTime.textContent = 'Notowania chwilowo niedostępne. Odśwież ceny.';
       prices = null;
@@ -76,6 +92,12 @@
       update();
     }
   }
+  priceGrid.addEventListener('click', event => {
+    const button = event.target.closest('button[data-purity]');
+    if (!button || !prices) return;
+    form.elements.purity.value = button.dataset.purity;
+    update();
+  });
   form.addEventListener('submit', event => event.preventDefault());
   form.addEventListener('input', update);
   form.elements.purity.addEventListener('change', update);

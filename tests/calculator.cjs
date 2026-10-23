@@ -1,6 +1,7 @@
 // Run with the local HTTP server on port 8000 and Playwright available.
 const {chromium} = require('playwright');
 const assert = require('node:assert/strict');
+const siteUrl = process.env.SITE_URL || 'http://127.0.0.1:8000';
 (async () => {
   const browser = await chromium.launch({executablePath: process.env.CHROMIUM_PATH || '/usr/bin/chromium', args: ['--no-sandbox']});
   try {
@@ -10,7 +11,7 @@ const assert = require('node:assert/strict');
     let mode = 'valid', price = 222.22;
     await page.route('**/*', async route => {
       const url = route.request().url();
-      if (url.startsWith('http://127.0.0.1:8000/')) return route.continue();
+      if (url.startsWith(siteUrl + '/')) return route.continue();
       if (url === 'https://skup-zlota-gorzow.angsm111.workers.dev/api/prices') {
         assert.equal(route.request().headers().cookie, undefined);
         if (mode === 'error') return route.abort();
@@ -22,14 +23,19 @@ const assert = require('node:assert/strict');
       }
       return route.abort();
     });
-    await page.goto('http://127.0.0.1:8000/skup-zlota.html');
+    await page.goto(siteUrl + '/skup-zlota.html');
     await page.waitForFunction(() => document.querySelector('#gold-price').value === '222.22');
     assert.equal(await page.locator('#gold-price').getAttribute('readonly'), '');
     assert.match(await page.locator('#gold-spot-price').innerText(), /400,00/);
     assert.equal(await page.evaluate(() => {
       const sections = [...document.querySelector('main').children];
-      return sections[1].id === 'kalkulator' && !!sections[2].querySelector('.grid-3');
+      return sections[1].id === 'kalkulator' && !!sections[2].querySelector('a[href="cennik.html"]');
     }), true);
+    assert.equal(await page.locator('#buy-price-grid button').count(),2);
+    await page.click('#buy-price-grid button[data-purity="750"]');
+    assert.equal(await page.inputValue('#gold-purity'),'750');
+    assert.equal(await page.locator('#buy-price-grid button[data-purity="750"]').getAttribute('aria-pressed'),'true');
+    await page.click('#buy-price-grid button[data-purity="585"]');
     await page.fill('#gold-weight','10');
     assert.match(await page.locator('#calc-amount').innerText(), /2\s?222,20/);
     assert.equal(await page.locator('#gold-purity option[value="999"]').count(),0);
@@ -45,6 +51,7 @@ const assert = require('node:assert/strict');
       mode=failure;
       await page.click('#price-refresh');
       await page.waitForFunction(() => document.querySelector('#calc-amount').textContent === '—' && !document.querySelector('#price-refresh').disabled);
+      assert.equal(await page.locator('#buy-price-grid button').count(),0);
       assert.equal(await page.inputValue('#gold-price'),'');
       assert.equal(await page.locator('#gold-spot-price').innerText(),'—');
       assert.equal(await page.locator('#gold-purity').isDisabled(),true);
