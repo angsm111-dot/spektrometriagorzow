@@ -48,3 +48,6 @@ Test interfejsu: przy działającym serwerze lokalnym i dostępnym Playwright ur
 
 ## Cennik badań
 `cennik.html`: 1 pomiar — 25 zł; 3 pomiary — 60 zł; Multi, sprawdzenie w 5 miejscach — 80 zł. Stawki podane przez właściciela.
+
+## Prezentacja wideo
+`prezentacja.html` odtwarza przesłany przez właściciela `assets/video/goldscope-video.webm` (VP9/Opus, 1920×1080, około 91 s). Film ma sterowanie, odtwarzanie inline i plakat, bez autoplay. W menu wszystkich podstron jest przycisk „Obejrzyj film”.
