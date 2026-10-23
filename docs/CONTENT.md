@@ -10,3 +10,5 @@
 - Nie przedstawiać usługi jako urzędowego cechowania ani jako autoryzacji przez Helmut Fischer.
 - Zdjęcia i filmy producenta wykorzystywać komercyjnie zgodnie z prawami do materiałów.
 - Uwzględnić SEO: badanie złota Gorzów, badanie metali szlachetnych Gorzów, spektrometr złota Gorzów, badanie srebra palladu platyny Gorzów.
+
+- Informacja od właściciela: urządzenia marki Fischer są używane także w polskich urzędach probierczych. Nie rozszerzać tego stwierdzenia na wszystkie urzędy w Polsce ani na identyczny model SD300 bez źródła potwierdzającego taki zakres. Nie sugerować rekomendacji urzędów.
