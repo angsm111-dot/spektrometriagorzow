@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 100" role="img" aria-labelledby="title">
+<title id="title">SEZAM</title>
+<defs>
+ <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#96600c"/><stop offset=".35" stop-color="#d29a31"/><stop offset=".58" stop-color="#ffdfa0"/><stop offset="1" stop-color="#b57b1a"/></linearGradient>
+ <linearGradient id="shine" x1="0" y1="0" x2="1" y2=".4"><stop stop-color="#b07613"/><stop offset=".55" stop-color="#f5d790"/><stop offset="1" stop-color="#d2a047"/></linearGradient>
+ <linearGradient id="facet" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f6d180"/><stop offset="1" stop-color="#9a6009"/></linearGradient>
+</defs>
+<g transform="translate(2 5)">
+ <path d="M0 31 29 0H72L101 31 50 88Z" fill="url(#gold)"/>
+ <path d="M0 31 34 11H81L72 0H29Z" fill="url(#shine)"/>
+ <path d="M34 11 0 31 50 51 78 66 89 54 23 27Z" fill="#fffaf0"/>
+ <path d="M61 23 74 12 101 31H86L77 23Z" fill="#b87d19"/>
+ <path d="M0 31 50 88 64 72 14 43 50 63 78 66 50 51Z" fill="url(#facet)"/>
+ <path d="m50 63 14 9-14 16Z" fill="#f4d593"/>
+ <path d="m86 31 15 0-12 23-12-7Z" fill="#84500b" opacity=".65"/>
+</g>
+<g fill="none" stroke="#292c2d" stroke-width="7" stroke-linecap="square" stroke-linejoin="miter">
+ <path d="M151 29C144 17 120 18 117 33C113 48 128 49 139 53C157 59 155 78 141 83C131 87 119 83 113 76" stroke-linecap="butt"/>
+ <path d="M174 24H209M174 49H205M174 80H209"/>
+ <path d="M231 24H273L229 80H275"/>
+ <path d="M293 80 324 24 355 80"/>
+ <path d="M373 80V25L401 54 430 25V80"/>
+</g>
+</svg>
