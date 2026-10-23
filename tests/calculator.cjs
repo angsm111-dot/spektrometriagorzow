@@ -17,7 +17,7 @@ const assert = require('node:assert/strict');
         return route.fulfill({status:200, contentType:'application/json', headers:{'access-control-allow-origin':'*'}, body:JSON.stringify({
           status:'ok', provider:mode === 'fallback' ? 'Dane zapasowe' : 'Test fixture',
           fetchedAt:new Date(Date.now() - (mode === 'stale' ? 3600000 : 0)).toISOString(),
-          metals:{gold:{purities:{585:{price},750:{price:267},999:{price:0}}}}
+          metals:{gold:{spot:400,purities:{585:{price},750:{price:267},999:{price:0}}}}
         })});
       }
       return route.abort();
@@ -25,6 +25,11 @@ const assert = require('node:assert/strict');
     await page.goto('http://127.0.0.1:8000/skup-zlota.html');
     await page.waitForFunction(() => document.querySelector('#gold-price').value === '222.22');
     assert.equal(await page.locator('#gold-price').getAttribute('readonly'), '');
+    assert.match(await page.locator('#gold-spot-price').innerText(), /400,00/);
+    assert.equal(await page.evaluate(() => {
+      const sections = [...document.querySelector('main').children];
+      return sections[1].id === 'kalkulator' && !!sections[2].querySelector('.grid-3');
+    }), true);
     await page.fill('#gold-weight','10');
     assert.match(await page.locator('#calc-amount').innerText(), /2\s?222,20/);
     assert.equal(await page.locator('#gold-purity option[value="999"]').count(),0);
@@ -41,6 +46,7 @@ const assert = require('node:assert/strict');
       await page.click('#price-refresh');
       await page.waitForFunction(() => document.querySelector('#calc-amount').textContent === '—' && !document.querySelector('#price-refresh').disabled);
       assert.equal(await page.inputValue('#gold-price'),'');
+      assert.equal(await page.locator('#gold-spot-price').innerText(),'—');
       assert.equal(await page.locator('#gold-purity').isDisabled(),true);
       mode='valid';
       await page.click('#price-refresh');

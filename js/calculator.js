@@ -5,6 +5,8 @@
   const status = document.querySelector('#calc-status');
   const feedStatus = document.querySelector('#price-feed-status');
   const refresh = document.querySelector('#price-refresh');
+  const spotPrice = document.querySelector('#gold-spot-price');
+  const spotTime = document.querySelector('#gold-spot-time');
   const currency = new Intl.NumberFormat('pl-PL', { style: 'currency', currency: 'PLN' });
   const endpoint = 'https://skup-zlota-gorzow.angsm111.workers.dev/api/prices';
   const maxAge = 15 * 60 * 1000;
@@ -45,6 +47,8 @@
       const data = await response.json();
       const timestamp = Date.parse(data.fetchedAt);
       if (data.status !== 'ok' || !Number.isFinite(timestamp) || Date.now() - timestamp > maxAge || timestamp > Date.now() + 60000 || data.provider === 'Dane zapasowe') throw new Error('Unverified or stale prices');
+      const spot = data.metals?.gold?.spot;
+      if (typeof spot !== 'number' || !Number.isFinite(spot) || spot <= 0) throw new Error('Invalid spot price');
       const entries = Object.entries(data.metals?.gold?.purities || {})
         .filter(([purity, entry]) => /^\d{3}$/.test(purity) && Number(purity) > 0 && typeof entry?.price === 'number' && Number.isFinite(entry.price) && entry.price > 0)
         .sort((a, b) => Number(a[0]) - Number(b[0]));
@@ -52,11 +56,15 @@
       const selected = form.elements.purity.value || '585';
       prices = Object.fromEntries(entries.map(([purity, entry]) => [purity, entry.price]));
       fetchedAt = timestamp;
+      spotPrice.textContent = currency.format(spot);
+      spotTime.textContent = `Notowanie z ${new Date(timestamp).toLocaleString('pl-PL', { timeZone: 'Europe/Warsaw' })}`;
       form.elements.purity.replaceChildren(...entries.map(([purity]) => new Option(`Próba ${purity}`, purity)));
       form.elements.purity.value = prices[selected] ? selected : entries[0][0];
       form.elements.purity.disabled = false;
       feedStatus.textContent = `Notowania z ${new Date(timestamp).toLocaleString('pl-PL', { timeZone: 'Europe/Warsaw' })}. Sprawdzamy ceny co minutę.`;
     } catch {
+      spotPrice.textContent = '—';
+      spotTime.textContent = 'Notowania chwilowo niedostępne. Odśwież ceny.';
       prices = null;
       fetchedAt = 0;
       form.elements.purity.disabled = true;
