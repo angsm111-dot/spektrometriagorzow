@@ -24,7 +24,7 @@
 
 ## Oryginalne zdjęcia urządzenia
 - Właściciel dodał pliki bezpośrednio do repozytorium: `assets/Screenshot_134.jpg` (przód, 864×674) i `assets/Screenshot_131.jpg` (bok, 767×587).
-- Są użyte na stronie głównej: przód w sekcji hero, bok obok parametrów urządzenia. Zdjęcie z przodu jest też na podstronie technologii.
+- Na prośbę właściciela na stronie głównej używamy wyłącznie ujęcia z przodu: w hero i przy parametrach. Ujęcie z boku jest zachowane w repozytorium, ale nie jest wyświetlane. Zdjęcie z przodu jest też na podstronie technologii.
 - Zachować oryginalne pliki i napisy urządzenia bez generatywnej obróbki. Szare tło dopasowano stylem otoczenia, nie zmieniano pikseli zdjęć.
 - Wcześniejsze pliki `fischer-sd300-cutout.png` i `fischer-sd300-front.png` były obrabiane generatywnie i miały zniekształcone detale. Nie używać ich ponownie; zostały zastąpione plikami właściciela.
 
