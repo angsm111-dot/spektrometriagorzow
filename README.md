@@ -35,6 +35,13 @@ Strony HTML są statyczne. Repozytorium samo w sobie nie oznacza, że witryna zo
 - `css/base.css`, `css/light.css`: wspólne style; `js/site.js`: obsługa prezentacji; `js/calculator.js`: kalkulator
 
 Uruchom lokalnie: `python3 -m http.server 8000 --bind 127.0.0.1` w katalogu repozytorium.
-Kalkulator wymaga ręcznego wpisania aktualnej ceny skupu za gram wybranej próby. Nie pobiera kursów automatycznie. Zmiana próby zeruje stawkę, aby nie przeliczyć nowej próby według poprzedniej ceny.
+Kalkulator pobiera gotowe ceny skupu (po ustawieniach panelu) z `https://skup-zlota-gorzow.angsm111.workers.dev/api/prices`, z pola `metals.gold.purities[próba].price`. Odświeża je co minutę i po powrocie do karty. Cena jest tylko do odczytu; lista prób pochodzi z API. Nie liczymy ponownie potrąceń ani wartości spot. Przy błędzie, danych starszych niż 15 minut lub dostawcy „Dane zapasowe” kalkulator ukrywa wycenę. Nie przechowuje zapasowej kopii cen.
 
 Style są także osadzone w każdej podstronie, aby zewnętrzny podgląd HTML nie wyświetlał najpierw niesformatowanego dokumentu. Po zmianie `css/base.css` lub `css/light.css` uruchom `python3 tools/embed_styles.py`. Skrypt odświeża istniejący blok stylów bez jego duplikowania.
+
+## Wdrożenie wspólnego cennika
+W repozytorium `angsm111-dot/nowa-skup-zlota-gorzow` poprawka Workera dodaje `Access-Control-Allow-Origin: *` wyłącznie do publicznego GET `/api/prices`. Nie udostępnia tras administracyjnych ani poświadczeń. Zmianę należy wdrożyć do istniejącego Workera `skup-zlota-gorzow` przez jego połączony proces wdrażania Cloudflare (albo `wrangler deploy` z autoryzowanej maszyny). Sam push do GitHuba nie potwierdza wdrożenia.
+
+Po wdrożeniu sprawdź w przeglądarce stronę `skup-zlota.html`: stawka dla 585 musi zgadzać się z panelem, a po opublikowaniu zmiany w panelu przycisk „Odśwież ceny” powinien pobrać nową wartość. Nie publikuj haseł panelu ani tokenów Cloudflare w kodzie strony.
+
+Test interfejsu: przy działającym serwerze lokalnym i dostępnym Playwright uruchom `node tests/calculator.cjs`. Test przechwytuje API i sprawdza kontrolowane dane testowe, nie dostępność produkcji.

@@ -1,25 +1,78 @@
 (() => {
   const form = document.querySelector('#gold-calculator');
+  if (!form) return;
   const amount = document.querySelector('#calc-amount');
   const status = document.querySelector('#calc-status');
+  const feedStatus = document.querySelector('#price-feed-status');
+  const refresh = document.querySelector('#price-refresh');
   const currency = new Intl.NumberFormat('pl-PL', { style: 'currency', currency: 'PLN' });
+  const endpoint = 'https://skup-zlota-gorzow.angsm111.workers.dev/api/prices';
+  const maxAge = 15 * 60 * 1000;
+  let prices = null;
+  let fetchedAt = 0;
+  let loading = false;
+
   function update() {
     const weight = form.elements.weight.valueAsNumber;
-    const price = form.elements.price.valueAsNumber;
-    if (!form.checkValidity() || !Number.isFinite(weight) || !Number.isFinite(price) || weight <= 0 || price <= 0 || !Number.isFinite(weight * price)) {
+    const price = prices?.[form.elements.purity.value];
+    const validPrice = prices && Date.now() - fetchedAt <= maxAge && Number.isFinite(price) && price > 0;
+    form.elements.price.value = validPrice ? price.toFixed(2) : '';
+    if (!validPrice) {
       amount.textContent = '—';
-      status.textContent = 'Wpisz wagę i cenę skupu za gram wybranej próby, aby zobaczyć wycenę.';
+      status.textContent = loading ? 'Pobieramy aktualne ceny skupu…' : 'Brak aktualnej ceny. Odśwież cennik lub zadzwoń: 601 775 146.';
+      return;
+    }
+    if (!form.elements.weight.checkValidity() || !Number.isFinite(weight) || weight <= 0 || !Number.isFinite(weight * price)) {
+      amount.textContent = '—';
+      status.textContent = 'Podaj wagę złota, aby zobaczyć orientacyjną wartość skupu.';
       return;
     }
     amount.textContent = currency.format(weight * price);
     status.textContent = `${weight.toLocaleString('pl-PL')} g × ${currency.format(price)}/g · próba ${form.elements.purity.value}`;
   }
+
+  async function loadPrices() {
+    if (loading) return;
+    loading = true;
+    refresh.disabled = true;
+    feedStatus.textContent = 'Pobieramy aktualny cennik…';
+    update();
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 10000);
+    try {
+      const response = await fetch(endpoint, { cache: 'no-store', credentials: 'omit', signal: controller.signal });
+      if (!response.ok) throw new Error('Price feed unavailable');
+      const data = await response.json();
+      const timestamp = Date.parse(data.fetchedAt);
+      if (data.status !== 'ok' || !Number.isFinite(timestamp) || Date.now() - timestamp > maxAge || timestamp > Date.now() + 60000 || data.provider === 'Dane zapasowe') throw new Error('Unverified or stale prices');
+      const entries = Object.entries(data.metals?.gold?.purities || {})
+        .filter(([purity, entry]) => /^\d{3}$/.test(purity) && Number(purity) > 0 && typeof entry?.price === 'number' && Number.isFinite(entry.price) && entry.price > 0)
+        .sort((a, b) => Number(a[0]) - Number(b[0]));
+      if (!entries.length) throw new Error('No valid gold prices');
+      const selected = form.elements.purity.value || '585';
+      prices = Object.fromEntries(entries.map(([purity, entry]) => [purity, entry.price]));
+      fetchedAt = timestamp;
+      form.elements.purity.replaceChildren(...entries.map(([purity]) => new Option(`Próba ${purity}`, purity)));
+      form.elements.purity.value = prices[selected] ? selected : entries[0][0];
+      form.elements.purity.disabled = false;
+      feedStatus.textContent = `Notowania z ${new Date(timestamp).toLocaleString('pl-PL', { timeZone: 'Europe/Warsaw' })}. Sprawdzamy ceny co minutę.`;
+    } catch {
+      prices = null;
+      fetchedAt = 0;
+      form.elements.purity.disabled = true;
+      feedStatus.textContent = 'Nie udało się potwierdzić aktualnych cen. Spróbuj ponownie lub zadzwoń: 601 775 146.';
+    } finally {
+      clearTimeout(timeout);
+      loading = false;
+      refresh.disabled = false;
+      update();
+    }
+  }
   form.addEventListener('submit', event => event.preventDefault());
   form.addEventListener('input', update);
-  form.elements.purity.addEventListener('change', () => {
-    form.elements.price.value = '';
-    update();
-    status.textContent = 'Próba została zmieniona. Wpisz cenę skupu za gram dla nowej próby.';
-  });
-  update();
+  form.elements.purity.addEventListener('change', update);
+  refresh.addEventListener('click', loadPrices);
+  document.addEventListener('visibilitychange', () => { if (!document.hidden) loadPrices(); });
+  setInterval(() => { if (!document.hidden) loadPrices(); }, 60000);
+  loadPrices();
 })();
