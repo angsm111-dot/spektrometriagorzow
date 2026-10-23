@@ -14,3 +14,5 @@
 - Właściciel potwierdził telefonicznie, że urządzenia marki Fischer są używane przez urzędy probiercze w całej Polsce, i polecił wyeksponować ten przekaz na stronie głównej. Jest to informacja przekazana przez właściciela, nie niezależna weryfikacja Codexa. Nie utożsamiać marki z identycznym modelem SD300 ani nie sugerować rekomendacji urzędów.
 
 - Właściciel potwierdził wyposażenie używanego urządzenia w precyzyjny kolimator 0,6 mm i autofocus. Eksponować te parametry na stronie głównej i w technologii. Nie przedstawiać nieudokumentowanego światowego rankingu jako faktu.
+
+- Właściciel podał, że Helmut Fischer potwierdził mu wykorzystanie urządzeń marki przez urzędy probiercze także na świecie. W opisach stosujemy „w całej Polsce i na świecie”. To informacja przekazana przez właściciela; nie jest to niezależna weryfikacja ani stwierdzenie, że każdy urząd na świecie korzysta z identycznego modelu.

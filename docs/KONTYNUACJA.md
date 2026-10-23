@@ -9,7 +9,7 @@
 ## Wygląd i treść zatwierdzone przez właściciela
 - Jasna, kremowo-złota witryna z osobnymi podstronami, nie jeden długi landing.
 - Geometryczne logo SEZAM w `assets/sezam-logo.svg`, odtworzone z przesłanego wzoru. Podpis „Spektrometria Gorzów” wycentrowany pod samym napisem SEZAM, z cienką linią.
-- Hasło główne: „Badamy sprzętem Helmut Fischer”. Właściciel telefonicznie potwierdził informację o używaniu marki przez urzędy probiercze w całej Polsce. Nie utożsamiać marki z identycznym modelem urządzenia ani rekomendacją urzędów.
+- Hasło główne: „Badamy sprzętem Helmut Fischer”. Właściciel potwierdził informację o używaniu marki przez urzędy probiercze w całej Polsce i na świecie, powołując się na potwierdzenie od Helmut Fischer. Nie utożsamiać marki z identycznym modelem urządzenia ani rekomendacją urzędów.
 - Urządzenie: GOLDSCOPE SD® 300, detektor SDD, kolimator 0,6 mm i autofocus. Nie dodawać nieudokumentowanego światowego rankingu.
 - Cennik badań: 1 pomiar 25 zł; 3 pomiary 60 zł; Multi — sprawdzenie w 5 miejscach 80 zł.
 - Telefon i WhatsApp: +48 601 775 146. Adres: ul. Pocztowa 11, Gorzów Wielkopolski.
