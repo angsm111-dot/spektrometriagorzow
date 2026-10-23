@@ -15,12 +15,8 @@ Strona promująca badanie **złota (Au), srebra (Ag), palladu (Pd) i platyny (Pt
 - `assets/`: docelowe miejsce na autentyczne zdjęcia SD300
 - `versions/`: docelowe miejsce na pozostałe wersje Premium oraz WOW
 
-## Ważne dla Codexa
-Projekt powstał jako kilka niezależnych plików HTML z obrazami osadzonymi jako `data:image/...;base64`. **Pełne oryginalne pliki `sezam_fischer_sd300_wow.html`, `sezam_fischer_sd300_premium.html`, `sezam_fischer_sd300_google_ads.html` nie zostały jeszcze w całości zaimportowane do repozytorium.** Nie utożsamiaj aktualnego `index.html` z pełną wersją WOW. Po otrzymaniu źródeł:
-1. zachowaj pełny projekt WOW jako główne `index.html`;
-2. rozdziel CSS, JS i obrazy do `css/`, `js/`, `assets/`;
-3. zachowaj pozostałe warianty w `versions/`;
-4. zweryfikuj linki, formularze, RWD i prawa do materiałów producenta.
+## Kontynuacja pracy w Codexie
+Otwórz repozytorium `angsm111-dot/spektrometriagorzow`, gałąź `main`. Przed zmianami przeczytaj [stan projektu i ustalenia](docs/KONTYNUACJA.md) oraz [wytyczne treści](docs/CONTENT.md). Aktualna wersja jest witryną wielostronicową; zachowaj ją jako punkt wyjścia. Starsze nazwy WOW/Premium to historia projektu, nie instrukcja zastąpienia bieżącej strony.
 
 ## Publikacja
 Strony HTML są statyczne. Repozytorium samo w sobie nie oznacza, że witryna została opublikowana. Do hostingu można wykorzystać GitHub Pages lub własny serwer po weryfikacji materiałów.
@@ -31,7 +27,9 @@ Strony HTML są statyczne. Repozytorium samo w sobie nie oznacza, że witryna zo
 - `analiza-xrf.html`: wyniki, przebieg i ograniczenia badania
 - `skup-zlota.html`: informacje o skupie i kalkulator
 - `blog.html`: lista poradników; `proby-zlota.html` i `jak-wycenic-zloto.html`: artykuły
-- `kontakt.html`: telefon, adres i dojazd
+- `kontakt.html`: telefon, adres, dojazd i WhatsApp
+- `cennik.html`: ceny pomiarów
+- `prezentacja.html`: prezentacja wideo urządzenia
 - `css/base.css`, `css/light.css`: wspólne style; `js/site.js`: obsługa prezentacji; `js/calculator.js`: kalkulator
 
 Uruchom lokalnie: `python3 -m http.server 8000 --bind 127.0.0.1` w katalogu repozytorium.
@@ -42,7 +40,7 @@ Style są także osadzone w każdej podstronie, aby zewnętrzny podgląd HTML ni
 ## Status połączenia z panelem
 Właściciel zaakceptował publiczny odczyt cen. Przywrócono nagłówek `Access-Control-Allow-Origin: *` wyłącznie dla GET `/api/prices` w repozytorium `nowa-skup-zlota-gorzow`. Kalkulator odczytuje gotowe stawki bez haseł i bez dostępu do tras administracyjnych. CORS nie jest uwierzytelnieniem ani ochroną przed kopiowaniem publicznych cen.
 
-Poprawkę należy wdrożyć do istniejącego Workera `skup-zlota-gorzow` w Cloudflare. Zapis w GitHubie i testy lokalne nie potwierdzają wdrożenia. Po wdrożeniu sprawdź zgodność ceny 585 z panelem oraz pobranie zmiany przyciskiem „Odśwież ceny”.
+W tej sesji potwierdzono na żywo odpowiedź HTTP 200 i nagłówek CORS z produkcyjnego Workera oraz działanie interfejsu na pobranych danych. Nie wykonywano bezpośredniego wdrożenia przez Wrangler; aktualizacja została zaobserwowana po przesłaniu kodu na GitHub. W nowej sesji ponownie sprawdź dostępność API. Token Cloudflare nie jest wymagany do odczytu cen.
 
 Test interfejsu: przy działającym serwerze lokalnym i dostępnym Playwright uruchom `node tests/calculator.cjs`. Test używa danych testowych i nie potwierdza produkcyjnego połączenia.
 
