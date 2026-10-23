@@ -7,7 +7,7 @@
   const refresh = document.querySelector('#price-refresh');
   const spotPrice = document.querySelector('#gold-spot-price');
   const spotTime = document.querySelector('#gold-spot-time');
-  const priceGrid = document.querySelector('#buy-price-grid');
+  const priceRows = document.querySelector('#buy-price-rows');
   const currency = new Intl.NumberFormat('pl-PL', { style: 'currency', currency: 'PLN' });
   const endpoint = 'https://skup-zlota-gorzow.angsm111.workers.dev/api/prices';
   const maxAge = 15 * 60 * 1000;
@@ -16,9 +16,6 @@
   let loading = false;
 
   function update() {
-    priceGrid.querySelectorAll('button[data-purity]').forEach(button => {
-      button.setAttribute('aria-pressed', String(button.dataset.purity === form.elements.purity.value));
-    });
     const weight = form.elements.weight.valueAsNumber;
     const price = prices?.[form.elements.purity.value];
     const validPrice = prices && Date.now() - fetchedAt <= maxAge && Number.isFinite(price) && price > 0;
@@ -59,16 +56,15 @@
       if (!entries.length) throw new Error('No valid gold prices');
       const selected = form.elements.purity.value || '585';
       prices = Object.fromEntries(entries.map(([purity, entry]) => [purity, entry.price]));
-      priceGrid.replaceChildren(...entries.map(([purity, entry]) => {
-        const button = document.createElement('button');
-        button.type = 'button';
-        button.dataset.purity = purity;
-        const label = document.createElement('span');
-        label.textContent = `Próba ${purity}`;
-        const value = document.createElement('strong');
+      priceRows.replaceChildren(...entries.map(([purity, entry]) => {
+        const row = document.createElement('tr');
+        const label = document.createElement('th');
+        label.scope = 'row';
+        label.textContent = purity;
+        const value = document.createElement('td');
         value.textContent = currency.format(entry.price);
-        button.append(label, value);
-        return button;
+        row.append(label, value);
+        return row;
       }));
       fetchedAt = timestamp;
       spotPrice.textContent = currency.format(spot);
@@ -78,7 +74,12 @@
       form.elements.purity.disabled = false;
       feedStatus.textContent = `Notowania z ${new Date(timestamp).toLocaleString('pl-PL', { timeZone: 'Europe/Warsaw' })}. Sprawdzamy ceny co minutę.`;
     } catch {
-      priceGrid.textContent = 'Ceny chwilowo niedostępne. Odśwież lub zadzwoń: 601 775 146.';
+      const row = document.createElement('tr');
+      const cell = document.createElement('td');
+      cell.colSpan = 2;
+      cell.textContent = 'Ceny chwilowo niedostępne. Odśwież lub zadzwoń: 601 775 146.';
+      row.append(cell);
+      priceRows.replaceChildren(row);
       spotPrice.textContent = '—';
       spotTime.textContent = 'Notowania chwilowo niedostępne. Odśwież ceny.';
       prices = null;
@@ -92,12 +93,6 @@
       update();
     }
   }
-  priceGrid.addEventListener('click', event => {
-    const button = event.target.closest('button[data-purity]');
-    if (!button || !prices) return;
-    form.elements.purity.value = button.dataset.purity;
-    update();
-  });
   form.addEventListener('submit', event => event.preventDefault());
   form.addEventListener('input', update);
   form.elements.purity.addEventListener('change', update);
