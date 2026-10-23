@@ -12,3 +12,5 @@
 - Uwzględnić SEO: badanie złota Gorzów, badanie metali szlachetnych Gorzów, spektrometr złota Gorzów, badanie srebra palladu platyny Gorzów.
 
 - Właściciel potwierdził telefonicznie, że urządzenia marki Fischer są używane przez urzędy probiercze w całej Polsce, i polecił wyeksponować ten przekaz na stronie głównej. Jest to informacja przekazana przez właściciela, nie niezależna weryfikacja Codexa. Nie utożsamiać marki z identycznym modelem SD300 ani nie sugerować rekomendacji urzędów.
+
+- Właściciel potwierdził wyposażenie używanego urządzenia w precyzyjny kolimator 0,6 mm i autofocus. Eksponować te parametry na stronie głównej i w technologii. Nie przedstawiać nieudokumentowanego światowego rankingu jako faktu.
