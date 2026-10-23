@@ -23,8 +23,8 @@
 - Publiczny GET ma CORS `*` za zgodą właściciela; nie dotyczy to administracji ani zapisu. Brak haseł i tokenów w repozytorium. Odczyt publicznych cen nie wymaga tokenu Cloudflare.
 
 ## Zdjęcia — ważne ograniczenie
-- Właściciel odrzucił generatywnie przerobione drugie zdjęcie z powodu zniekształcenia znaku Fischer. Zostało usunięte.
-- `assets/fischer-sd300-original.png` to nieprzerobiony oryginał z wcześniejszego repozytorium, tymczasowo użyty jako drugie zdjęcie.
+- Drugie ujęcie `assets/fischer-sd300-front.png` zostało po uwadze o zniekształceniu znaku Fischer zastąpione zdjęciem z pomarańczowym tłem, a następnie przywrócone na wyraźną prośbę właściciela. Jest to wcześniejsza wersja obrabiana generatywnie, nie nowy oryginał przesłany w rozmowie. Docelowo zastąpić ją plikiem oryginalnym, gdy będzie dostępny.
+- `assets/fischer-sd300-original.png` to nieprzerobiony oryginał z wcześniejszego repozytorium, zachowany jako zapasowy materiał.
 - `assets/fischer-sd300-cutout.png` na pierwszym ekranie jest wcześniejszą wersją z tłem usuniętym generatywnie. W przyszłości preferować oryginalne zdjęcia bez takiej obróbki.
 - Właściciel przesłał dwa kolejne ujęcia przodu i boku jako obrazy w rozmowie. Nie były udostępnione jako pliki na dysku ani z identyfikatorem pobierania; NIE są zapisane w repozytorium. Do galerii potrzebny oryginalny JPG/PNG lub ZIP. Nie odtwarzać napisów ani detali urządzenia przez AI.
 
