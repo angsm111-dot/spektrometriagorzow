@@ -24,3 +24,15 @@ Projekt powstał jako kilka niezależnych plików HTML z obrazami osadzonymi jak
 
 ## Publikacja
 Strony HTML są statyczne. Repozytorium samo w sobie nie oznacza, że witryna została opublikowana. Do hostingu można wykorzystać GitHub Pages lub własny serwer po weryfikacji materiałów.
+
+## Witryna wielostronicowa
+- `index.html`: skrócona strona główna
+- `technologia.html`: urządzenie, zalety i film
+- `analiza-xrf.html`: wyniki, przebieg i ograniczenia badania
+- `skup-zlota.html`: informacje o skupie i kalkulator
+- `blog.html`: lista poradników; `proby-zlota.html` i `jak-wycenic-zloto.html`: artykuły
+- `kontakt.html`: telefon, adres i dojazd
+- `css/base.css`, `css/light.css`: wspólne style; `js/site.js`: obsługa prezentacji; `js/calculator.js`: kalkulator
+
+Uruchom lokalnie: `python3 -m http.server 8000 --bind 127.0.0.1` w katalogu repozytorium.
+Kalkulator wymaga ręcznego wpisania aktualnej ceny skupu za gram wybranej próby. Nie pobiera kursów automatycznie. Zmiana próby zeruje stawkę, aby nie przeliczyć nowej próby według poprzedniej ceny.
