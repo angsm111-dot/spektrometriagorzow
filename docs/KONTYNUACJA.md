@@ -22,11 +22,11 @@
 - Aktualizacja co minutę. Nie wyświetlać wyceny po błędzie, przy danych zapasowych lub starszych niż 15 minut.
 - Publiczny GET ma CORS `*` za zgodą właściciela; nie dotyczy to administracji ani zapisu. Brak haseł i tokenów w repozytorium. Odczyt publicznych cen nie wymaga tokenu Cloudflare.
 
-## Zdjęcia — ważne ograniczenie
-- Drugie ujęcie `assets/fischer-sd300-front.png` zostało po uwadze o zniekształceniu znaku Fischer zastąpione zdjęciem z pomarańczowym tłem, a następnie przywrócone na wyraźną prośbę właściciela. Jest to wcześniejsza wersja obrabiana generatywnie, nie nowy oryginał przesłany w rozmowie. Docelowo zastąpić ją plikiem oryginalnym, gdy będzie dostępny.
-- `assets/fischer-sd300-original.png` to nieprzerobiony oryginał z wcześniejszego repozytorium, zachowany jako zapasowy materiał.
-- `assets/fischer-sd300-cutout.png` na pierwszym ekranie jest wcześniejszą wersją z tłem usuniętym generatywnie. W przyszłości preferować oryginalne zdjęcia bez takiej obróbki.
-- Właściciel przesłał dwa kolejne ujęcia przodu i boku jako obrazy w rozmowie. Nie były udostępnione jako pliki na dysku ani z identyfikatorem pobierania; NIE są zapisane w repozytorium. Do galerii potrzebny oryginalny JPG/PNG lub ZIP. Nie odtwarzać napisów ani detali urządzenia przez AI.
+## Oryginalne zdjęcia urządzenia
+- Właściciel dodał pliki bezpośrednio do repozytorium: `assets/Screenshot_134.jpg` (przód, 864×674) i `assets/Screenshot_131.jpg` (bok, 767×587).
+- Są użyte na stronie głównej: przód w sekcji hero, bok obok parametrów urządzenia. Zdjęcie z przodu jest też na podstronie technologii.
+- Zachować oryginalne pliki i napisy urządzenia bez generatywnej obróbki. Szare tło dopasowano stylem otoczenia, nie zmieniano pikseli zdjęć.
+- Wcześniejsze pliki `fischer-sd300-cutout.png` i `fischer-sd300-front.png` były obrabiane generatywnie i miały zniekształcone detale. Nie używać ich ponownie; zostały zastąpione plikami właściciela.
 
 ## Edycja i sprawdzanie
 - Po zmianie `css/base.css` lub `css/light.css`: `python3 tools/embed_styles.py`. Style są osadzone w HTML, żeby zewnętrzny podgląd nie migał przed wczytaniem CSS.
