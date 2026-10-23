@@ -24,9 +24,9 @@
 
 ## Oryginalne zdjęcia urządzenia
 - Właściciel dodał pliki bezpośrednio do repozytorium: `assets/Screenshot_134.jpg` (przód, 864×674) i `assets/Screenshot_131.jpg` (bok, 767×587).
-- Na prośbę właściciela na stronie głównej używamy wyłącznie ujęcia z przodu: w hero i przy parametrach. Ujęcie z boku jest zachowane w repozytorium, ale nie jest wyświetlane. Zdjęcie z przodu jest też na podstronie technologii.
+- Na prośbę właściciela hero ponownie używa wcześniejszego `assets/fischer-sd300-cutout.png` z widocznym prawym bokiem urządzenia. Przy parametrach pozostaje oryginalne ujęcie od przodu `Screenshot_134.jpg`. Profil `Screenshot_131.jpg` jest zachowany, ale nie jest wyświetlany.
 - Zachować oryginalne pliki i napisy urządzenia bez generatywnej obróbki. Szare tło dopasowano stylem otoczenia, nie zmieniano pikseli zdjęć.
-- Wcześniejsze pliki `fischer-sd300-cutout.png` i `fischer-sd300-front.png` były obrabiane generatywnie i miały zniekształcone detale. Nie używać ich ponownie; zostały zastąpione plikami właściciela.
+- `fischer-sd300-cutout.png` jest wcześniejszym ujęciem z tłem usuniętym generatywnie, przywróconym na wyraźną prośbę właściciela. Nie używać ponownie zniekształconego drugiego ujęcia `fischer-sd300-front.png`.
 
 ## Edycja i sprawdzanie
 - Po zmianie `css/base.css` lub `css/light.css`: `python3 tools/embed_styles.py`. Style są osadzone w HTML, żeby zewnętrzny podgląd nie migał przed wczytaniem CSS.
