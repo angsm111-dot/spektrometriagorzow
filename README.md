@@ -40,8 +40,8 @@ Kalkulator pobiera gotowe ceny skupu (po ustawieniach panelu) z `https://skup-zl
 Style są także osadzone w każdej podstronie, aby zewnętrzny podgląd HTML nie wyświetlał najpierw niesformatowanego dokumentu. Po zmianie `css/base.css` lub `css/light.css` uruchom `python3 tools/embed_styles.py`. Skrypt odświeża istniejący blok stylów bez jego duplikowania.
 
 ## Status połączenia z panelem
-Bezpośredni odczyt publicznego `/api/prices` jest przygotowany w interfejsie, ale nie jest docelowym prywatnym połączeniem. Na życzenie właściciela cofnięto w repozytorium panelu zgodę CORS dla dowolnych stron. Nie wdrażać poprzedniej poprawki CORS.
+Właściciel zaakceptował publiczny odczyt cen. Przywrócono nagłówek `Access-Control-Allow-Origin: *` wyłącznie dla GET `/api/prices` w repozytorium `nowa-skup-zlota-gorzow`. Kalkulator odczytuje gotowe stawki bez haseł i bez dostępu do tras administracyjnych. CORS nie jest uwierzytelnieniem ani ochroną przed kopiowaniem publicznych cen.
 
-Docelowo należy połączyć serwer witryny z uwierzytelnionym endpointem panelu. Klucz musi pozostać na serwerze, nigdy w HTML ani JavaScript przeglądarki. Wymaga to ustalenia hostingu witryny i bezpiecznego skonfigurowania poświadczeń. Samo ograniczenie CORS do domeny nie jest uwierzytelnieniem. Dotychczasowy `/api/prices` był publiczny przed integracją; jego ograniczenie wymaga także sprawdzenia obecnej strony i tablicy.
+Poprawkę należy wdrożyć do istniejącego Workera `skup-zlota-gorzow` w Cloudflare. Zapis w GitHubie i testy lokalne nie potwierdzają wdrożenia. Po wdrożeniu sprawdź zgodność ceny 585 z panelem oraz pobranie zmiany przyciskiem „Odśwież ceny”.
 
 Test interfejsu: przy działającym serwerze lokalnym i dostępnym Playwright uruchom `node tests/calculator.cjs`. Test używa danych testowych i nie potwierdza produkcyjnego połączenia.
