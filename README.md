@@ -47,4 +47,4 @@ Poprawkę należy wdrożyć do istniejącego Workera `skup-zlota-gorzow` w Cloud
 Test interfejsu: przy działającym serwerze lokalnym i dostępnym Playwright uruchom `node tests/calculator.cjs`. Test używa danych testowych i nie potwierdza produkcyjnego połączenia.
 
 ## Cennik badań
-`cennik.html` zawiera pakiety 1, 3 i 5 pomiarów oraz kontakt dla większych zleceń. Ceny nie zostały jeszcze podane przez właściciela; zamiast kwot wyświetlamy „Zapytaj o cenę”.
+`cennik.html`: 1 pomiar — 25 zł; 3 pomiary — 60 zł; Multi, sprawdzenie w 5 miejscach — 80 zł. Stawki podane przez właściciela.
