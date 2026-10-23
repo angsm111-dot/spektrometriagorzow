@@ -39,9 +39,9 @@ Kalkulator pobiera gotowe ceny skupu (po ustawieniach panelu) z `https://skup-zl
 
 Style są także osadzone w każdej podstronie, aby zewnętrzny podgląd HTML nie wyświetlał najpierw niesformatowanego dokumentu. Po zmianie `css/base.css` lub `css/light.css` uruchom `python3 tools/embed_styles.py`. Skrypt odświeża istniejący blok stylów bez jego duplikowania.
 
-## Wdrożenie wspólnego cennika
-W repozytorium `angsm111-dot/nowa-skup-zlota-gorzow` poprawka Workera dodaje `Access-Control-Allow-Origin: *` wyłącznie do publicznego GET `/api/prices`. Nie udostępnia tras administracyjnych ani poświadczeń. Zmianę należy wdrożyć do istniejącego Workera `skup-zlota-gorzow` przez jego połączony proces wdrażania Cloudflare (albo `wrangler deploy` z autoryzowanej maszyny). Sam push do GitHuba nie potwierdza wdrożenia.
+## Status połączenia z panelem
+Bezpośredni odczyt publicznego `/api/prices` jest przygotowany w interfejsie, ale nie jest docelowym prywatnym połączeniem. Na życzenie właściciela cofnięto w repozytorium panelu zgodę CORS dla dowolnych stron. Nie wdrażać poprzedniej poprawki CORS.
 
-Po wdrożeniu sprawdź w przeglądarce stronę `skup-zlota.html`: stawka dla 585 musi zgadzać się z panelem, a po opublikowaniu zmiany w panelu przycisk „Odśwież ceny” powinien pobrać nową wartość. Nie publikuj haseł panelu ani tokenów Cloudflare w kodzie strony.
+Docelowo należy połączyć serwer witryny z uwierzytelnionym endpointem panelu. Klucz musi pozostać na serwerze, nigdy w HTML ani JavaScript przeglądarki. Wymaga to ustalenia hostingu witryny i bezpiecznego skonfigurowania poświadczeń. Samo ograniczenie CORS do domeny nie jest uwierzytelnieniem. Dotychczasowy `/api/prices` był publiczny przed integracją; jego ograniczenie wymaga także sprawdzenia obecnej strony i tablicy.
 
-Test interfejsu: przy działającym serwerze lokalnym i dostępnym Playwright uruchom `node tests/calculator.cjs`. Test przechwytuje API i sprawdza kontrolowane dane testowe, nie dostępność produkcji.
+Test interfejsu: przy działającym serwerze lokalnym i dostępnym Playwright uruchom `node tests/calculator.cjs`. Test używa danych testowych i nie potwierdza produkcyjnego połączenia.
