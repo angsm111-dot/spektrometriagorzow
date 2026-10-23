@@ -45,3 +45,6 @@ Właściciel zaakceptował publiczny odczyt cen. Przywrócono nagłówek `Access
 Poprawkę należy wdrożyć do istniejącego Workera `skup-zlota-gorzow` w Cloudflare. Zapis w GitHubie i testy lokalne nie potwierdzają wdrożenia. Po wdrożeniu sprawdź zgodność ceny 585 z panelem oraz pobranie zmiany przyciskiem „Odśwież ceny”.
 
 Test interfejsu: przy działającym serwerze lokalnym i dostępnym Playwright uruchom `node tests/calculator.cjs`. Test używa danych testowych i nie potwierdza produkcyjnego połączenia.
+
+## Cennik badań
+`cennik.html` zawiera pakiety 1, 3 i 5 pomiarów oraz kontakt dla większych zleceń. Ceny nie zostały jeszcze podane przez właściciela; zamiast kwot wyświetlamy „Zapytaj o cenę”.
