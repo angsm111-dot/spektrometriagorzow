@@ -36,3 +36,5 @@ Strony HTML są statyczne. Repozytorium samo w sobie nie oznacza, że witryna zo
 
 Uruchom lokalnie: `python3 -m http.server 8000 --bind 127.0.0.1` w katalogu repozytorium.
 Kalkulator wymaga ręcznego wpisania aktualnej ceny skupu za gram wybranej próby. Nie pobiera kursów automatycznie. Zmiana próby zeruje stawkę, aby nie przeliczyć nowej próby według poprzedniej ceny.
+
+Style są także osadzone w każdej podstronie, aby zewnętrzny podgląd HTML nie wyświetlał najpierw niesformatowanego dokumentu. Po zmianie `css/base.css` lub `css/light.css` uruchom `python3 tools/embed_styles.py`. Skrypt odświeża istniejący blok stylów bez jego duplikowania.
