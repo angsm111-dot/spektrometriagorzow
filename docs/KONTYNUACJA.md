@@ -7,7 +7,7 @@
 - To statyczny HTML/CSS/JS; bez instalowania zależności aplikacji i bez bundlera. Serwer: `python3 -m http.server 8000 --bind 127.0.0.1` w katalogu strony. Proces trzeba uruchomić ponownie w nowej sesji.
 
 ## Wygląd i treść zatwierdzone przez właściciela
-- Jasna, kremowo-złota witryna z osobnymi podstronami, nie jeden długi landing.
+- Jasna, kremowo-złota witryna z osobnymi podstronami, nie jeden długi landing. Do szerokości 1100 px menu jest domyślnie zwinięte pod przyciskiem „Menu”, z obsługą aria-expanded, Escape i klawiatury; bez JS linki pozostają dostępne. Nie przywracać stale widocznych rzędów linków na telefonie.
 - Geometryczne logo SEZAM w `assets/sezam-logo.svg`, odtworzone z przesłanego wzoru. Podpis „Spektrometria Gorzów” wycentrowany pod samym napisem SEZAM, z cienką linią.
 - Hasło główne: „Badamy sprzętem Helmut Fischer”. Właściciel potwierdził informację o używaniu marki przez urzędy probiercze w całej Polsce i na świecie, powołując się na potwierdzenie od Helmut Fischer. Nie utożsamiać marki z identycznym modelem urządzenia ani rekomendacją urzędów.
 - Urządzenie: GOLDSCOPE SD® 300, detektor SDD, kolimator 0,6 mm i autofocus. Nie dodawać nieudokumentowanego światowego rankingu.
@@ -34,3 +34,5 @@
 - Sprawdź rzeczywiste odtwarzanie filmu, lokalne linki, brak przewijania na boki przy 320/390 px i dostępność produkcyjnego cennika, gdy ich dotyczą zmiany.
 - Podgląd użytkownika: `https://htmlpreview.github.io/?https://github.com/angsm111-dot/spektrometriagorzow/blob/main/index.html` . W razie cache użyj pełnego SHA commita zamiast `main`.
 - Wysłanie kodu na GitHub nie jest dowodem opublikowania strony na osobnej domenie.
+
+Test nawigacji mobilnej: `SITE_URL=http://127.0.0.1:8000 node tests/navigation.cjs` przy działającym serwerze i Playwright.
