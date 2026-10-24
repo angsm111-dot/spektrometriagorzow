@@ -36,3 +36,5 @@
 - Wysłanie kodu na GitHub nie jest dowodem opublikowania strony na osobnej domenie.
 
 Test nawigacji mobilnej: `SITE_URL=http://127.0.0.1:8000 node tests/navigation.cjs` przy działającym serwerze i Playwright.
+
+Responsywność: `SITE_URL=http://127.0.0.1:8000 node tests/responsive.cjs` sprawdza wszystkie podstrony na 7 szerokościach (320–1440 px), wychodzenie treści poza ekran i obcięty tekst. Test używa danych kontrolowanych. Ostatnia kontrola obejmowała też emulację dotyku, menu oraz kalkulator; nie jest testem na fizycznym iPhonie/Safari. Pola formularza mobilnego mają minimum 16 px.
