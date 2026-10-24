@@ -55,3 +55,5 @@ Precyzja: dodano wyróżnienie przy parametrach na głównej i w Technologii ora
 Ostatnia decyzja właściciela: główna zawiera tylko hero (slogan, pierwsze zdjęcie, parametry i główne przyciski) oraz stopkę. Usunięto drugie zdjęcie, opis „Podejmij świadomą decyzję”, kafelki działów i reklamę cennika. Nie dodawać tych sekcji ponownie bez prośby. Zdjęcia i szczegóły pozostają w Technologii, cennik i blog jako osobne HTML.
 
 Najnowsza korekta głównej: przywrócono samo drugie ujęcie `Screenshot_134.jpg`. Na telefonie kolejność to: nagłówek i slogan, pierwsze zdjęcie, pasek SDD/parametry, drugie zdjęcie, opis i przyciski. Bez dawnych kafelków działów, dodatkowego opisu i sekcji cennika.
+
+Główna na desktopie (od 981 px) została uproszczona: nagłówek „Twoje złoto. Najlepszy sprzęt. Helmut Fischer.”, zdanie o pierwszym wyborze w Gorzowie, krótka informacja o marce w urzędach, jedno duże zdjęcie oraz przyciski telefonu i filmu. Drugie zdjęcie, parametry i długi opis są tam ukryte. Układ mobilny zachowany bez zmian (potwierdzone identycznym zrzutem). Nie przedstawiać „najlepsi w Gorzowie” jako udokumentowanego rankingu bez źródła.
