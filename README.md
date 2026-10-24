@@ -51,3 +51,10 @@ Test interfejsu: przy działającym serwerze lokalnym i dostępnym Playwright ur
 `prezentacja.html` odtwarza przesłany przez właściciela `assets/video/goldscope-video.webm` (VP9/Opus, 1920×1080, około 91 s). Film ma sterowanie, odtwarzanie inline i plakat, bez autoplay. W menu wszystkich podstron jest przycisk „Obejrzyj film”.
 
 Kalkulator ma wspólny wybór metalu nad tabelą (gold/silver/palladium/platinum). Zmiana metalu przełącza tabelę cen, notowanie `metals[metal].spot`, listę prób i wycenę. Brak danych jednego metalu blokuje wyłącznie jego wycenę i nie przenosi stawek z innego metalu.
+
+## Blog i lokalne SEO
+Blog zawiera osiem osobnych artykułów HTML z unikalnymi tytułami, opisami, nagłówkami H1 oraz danymi Article w JSON-LD. Lista artykułów jest w `blog.html` (CollectionPage / ItemList). Frazy lokalne są wplecione w treść, bez powielania identycznych tekstów.
+
+Tematy: podstawy XRF, badanie złota w Gorzowie, próby złota, przygotowanie do wyceny, badanie srebra, platyna i pallad, kolimator/autofocus/SDD oraz przygotowanie biżuterii, monet i sztabek. Trzy ilustracje w `assets/blog/` są wygenerowanymi zdjęciami ilustracyjnymi w WebP; zdjęcie spektrometru pozostaje oryginalnym plikiem właściciela.
+
+Po ustaleniu docelowej domeny można uzupełnić absolutne adresy canonical, sitemap i zgłosić witrynę do Google Search Console. Nie wpisywać domeny na podstawie domysłów ani nie gwarantować pozycji w wynikach wyszukiwania.
