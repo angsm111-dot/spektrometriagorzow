@@ -42,7 +42,7 @@ Responsywność: `SITE_URL=http://127.0.0.1:8000 node tests/responsive.cjs` spra
 Mobilna strona główna (do 700 px): nagłówek i zdanie o urzędach probierczych, bezpośrednio potem zdjęcie urządzenia, następnie szczegóły i przyciski. Układ desktopowy pozostawiony bez zmian (porównanie zrzutów przed/po). Nie przesuwać zdjęcia za długi opis na telefonie.
 
 ## Ostatnia rozbudowa treści
-- Slogan na głównej powiększony: „Sprzęt wykorzystywany przez urzędy probiercze w całej Polsce i na świecie”. Zachowano położenie zdjęcia tuż pod nim w widoku mobilnym.
+- Slogan na głównej powiększony i skrócony na prośbę właściciela: „Wykorzystywany we wszystkich urzędach probierczych w Polsce i na świecie”. Nie powtarzać słowa „sprzęt” pod nagłówkiem Helmut Fischer. Dolny przycisk „Zadzwoń” pozostaje. Zachowano położenie zdjęcia tuż pod nim w widoku mobilnym.
 - Na życzenie właściciela usunięto z publicznych opisów Technologii i Kontaktu uwagi o urzędowym charakterze/cechowaniu. Nie dodawano obietnic o badaniu całego wnętrza przedmiotu.
 - 16 osobnych podstron HTML, w tym blog z 8 artykułami (dwa wcześniejsze rozbudowane, sześć nowych). Każdy artykuł ma własny plik, opis meta, H1, ilustrację i dane Article. Menu dalej prowadzi do osobnych HTML.
 - Obrazy ilustracyjne bloga są wygenerowane, podpisane jako ilustracyjne i zapisane w lekkim WebP. Nie zastępują autentycznych zdjęć urządzenia.
