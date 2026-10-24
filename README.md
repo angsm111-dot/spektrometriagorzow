@@ -6,7 +6,7 @@ Strona promująca badanie **złota (Au), srebra (Ag), palladu (Pd) i platyny (Pt
 - Lokalizacja: Lombard SEZAM, ul. Pocztowa 11, Gorzów Wielkopolski
 - Telefon: 601 775 146
 - Reklama: badanie od ręki; typowy pojedynczy pomiar około minuty, zależnie od próbki i ustawień
-- Materiał filmowy: https://www.youtube.com/watch?v=EQ3gu8VWePY (przed publikacją zweryfikować poprawność i dostępność osadzenia)
+- Film: własny plik `assets/video/goldscope-video.webm`, używany w prezentacji i dziale Technologia; bez osadzeń YouTube.
 
 ## Struktura projektu
 - `index.html`: strona główna dodana do repozytorium
