@@ -51,3 +51,5 @@ Mobilna strona główna (do 700 px): nagłówek i zdanie o urzędach probierczyc
 Optymalizacja głównego zdjęcia: `fischer-sd300-640.webp` (około 37 KB) i `fischer-sd300-1100.webp` (około 83 KB) zastępują pobieranie ciężkiego PNG 1,4 MB. Oryginalny PNG zachowany. Hero używa srcset/sizes, eager + fetchpriority high i dopasowanego preload bez podwójnego pobierania. Zdjęcie powiększone do 108% szerokości pola. Nie przywracać ciężkiego PNG jako src na stronie.
 
 Precyzja: dodano wyróżnienie przy parametrach na głównej i w Technologii oraz sekcję `#precyzja-pomiaru` w poradniku o kolimatorze/autofocusie/SDD. Nie obiecywać identycznej dokładności jak urzędy wyłącznie na podstawie zgodności marki; do takiej gwarancji potrzebne są dane o modelu, kalibracji i warunkach pomiaru.
+
+Ostatnia decyzja właściciela: główna zawiera tylko hero (slogan, pierwsze zdjęcie, parametry i główne przyciski) oraz stopkę. Usunięto drugie zdjęcie, opis „Podejmij świadomą decyzję”, kafelki działów i reklamę cennika. Nie dodawać tych sekcji ponownie bez prośby. Zdjęcia i szczegóły pozostają w Technologii, cennik i blog jako osobne HTML.
