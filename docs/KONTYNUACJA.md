@@ -53,3 +53,5 @@ Optymalizacja głównego zdjęcia: `fischer-sd300-640.webp` (około 37 KB) i `fi
 Precyzja: dodano wyróżnienie przy parametrach na głównej i w Technologii oraz sekcję `#precyzja-pomiaru` w poradniku o kolimatorze/autofocusie/SDD. Nie obiecywać identycznej dokładności jak urzędy wyłącznie na podstawie zgodności marki; do takiej gwarancji potrzebne są dane o modelu, kalibracji i warunkach pomiaru.
 
 Ostatnia decyzja właściciela: główna zawiera tylko hero (slogan, pierwsze zdjęcie, parametry i główne przyciski) oraz stopkę. Usunięto drugie zdjęcie, opis „Podejmij świadomą decyzję”, kafelki działów i reklamę cennika. Nie dodawać tych sekcji ponownie bez prośby. Zdjęcia i szczegóły pozostają w Technologii, cennik i blog jako osobne HTML.
+
+Najnowsza korekta głównej: przywrócono samo drugie ujęcie `Screenshot_134.jpg`. Na telefonie kolejność to: nagłówek i slogan, pierwsze zdjęcie, pasek SDD/parametry, drugie zdjęcie, opis i przyciski. Bez dawnych kafelków działów, dodatkowego opisu i sekcji cennika.
