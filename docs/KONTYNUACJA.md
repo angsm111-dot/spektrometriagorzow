@@ -15,10 +15,10 @@
 - Telefon i WhatsApp: +48 601 775 146. Adres: ul. Pocztowa 11, Gorzów Wielkopolski.
 - Film właściciela jest w `assets/video/`; przycisk „Obejrzyj film” w menu prowadzi do `prezentacja.html`.
 
-## Skup złota — najnowszy układ
-- Krótki wstęp, kompaktowa cena giełdowa złota 999,9, następnie zwykła tabela: próba / cena za 1 g. Nie przywracać kafelków ani przycisków z cenami — właściciel wyraźnie je odrzucił ze względu na telefon.
+## Skup metali szlachetnych — najnowszy układ
+- Wspólny wybór metalu: złoto, srebro, pallad, platyna; krótki wstęp, kompaktowa cena giełdowa wybranego metalu, następnie zwykła tabela: próba / cena za 1 g. Nie przywracać kafelków ani przycisków z cenami — właściciel wyraźnie je odrzucił ze względu na telefon.
 - Kalkulator pod tabelą, krótkie informacje na dole; bez długich opisów przed cenami.
-- Źródło: https://skup-zlota-gorzow.angsm111.workers.dev/api/prices . Cena giełdowa: `metals.gold.spot`. Ceny skupu: `metals.gold.purities[próba].price`; nie naliczać ponownie potrąceń.
+- Źródło: https://skup-zlota-gorzow.angsm111.workers.dev/api/prices . Cena giełdowa: `metals[metal].spot`. Ceny skupu: `metals[metal].purities[próba].price`; nie naliczać ponownie potrąceń.
 - Aktualizacja co minutę. Nie wyświetlać wyceny po błędzie, przy danych zapasowych lub starszych niż 15 minut.
 - Publiczny GET ma CORS `*` za zgodą właściciela; nie dotyczy to administracji ani zapisu. Brak haseł i tokenów w repozytorium. Odczyt publicznych cen nie wymaga tokenu Cloudflare.
 

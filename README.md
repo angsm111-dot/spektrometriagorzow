@@ -25,7 +25,7 @@ Strony HTML są statyczne. Repozytorium samo w sobie nie oznacza, że witryna zo
 - `index.html`: skrócona strona główna
 - `technologia.html`: urządzenie, zalety i film
 - `analiza-xrf.html`: wyniki, przebieg i ograniczenia badania
-- `skup-zlota.html`: informacje o skupie i kalkulator
+- `skup-zlota.html`: dział „Skup metali szlachetnych”, tabela cen i kalkulator złota, srebra, palladu i platyny (dotychczasowy adres zachowany dla zgodności)
 - `blog.html`: lista poradników; `proby-zlota.html` i `jak-wycenic-zloto.html`: artykuły
 - `kontakt.html`: telefon, adres, dojazd i WhatsApp
 - `cennik.html`: ceny pomiarów
@@ -33,7 +33,7 @@ Strony HTML są statyczne. Repozytorium samo w sobie nie oznacza, że witryna zo
 - `css/base.css`, `css/light.css`: wspólne style; `js/site.js`: obsługa prezentacji; `js/calculator.js`: kalkulator
 
 Uruchom lokalnie: `python3 -m http.server 8000 --bind 127.0.0.1` w katalogu repozytorium.
-Kalkulator pobiera gotowe ceny skupu (po ustawieniach panelu) z `https://skup-zlota-gorzow.angsm111.workers.dev/api/prices`, z pola `metals.gold.purities[próba].price`. Odświeża je co minutę i po powrocie do karty. Cena jest tylko do odczytu; lista prób pochodzi z API. Nie liczymy ponownie potrąceń ani wartości spot. Przy błędzie, danych starszych niż 15 minut lub dostawcy „Dane zapasowe” kalkulator ukrywa wycenę. Nie przechowuje zapasowej kopii cen.
+Kalkulator pobiera gotowe ceny skupu (po ustawieniach panelu) z `https://skup-zlota-gorzow.angsm111.workers.dev/api/prices`, z pola `metals[metal].purities[próba].price`. Odświeża je co minutę i po powrocie do karty. Cena jest tylko do odczytu; lista prób pochodzi z API. Nie liczymy ponownie potrąceń ani wartości spot. Przy błędzie, danych starszych niż 15 minut lub dostawcy „Dane zapasowe” kalkulator ukrywa wycenę. Nie przechowuje zapasowej kopii cen.
 
 Style są także osadzone w każdej podstronie, aby zewnętrzny podgląd HTML nie wyświetlał najpierw niesformatowanego dokumentu. Po zmianie `css/base.css` lub `css/light.css` uruchom `python3 tools/embed_styles.py`. Skrypt odświeża istniejący blok stylów bez jego duplikowania.
 
@@ -49,3 +49,5 @@ Test interfejsu: przy działającym serwerze lokalnym i dostępnym Playwright ur
 
 ## Prezentacja wideo
 `prezentacja.html` odtwarza przesłany przez właściciela `assets/video/goldscope-video.webm` (VP9/Opus, 1920×1080, około 91 s). Film ma sterowanie, odtwarzanie inline i plakat, bez autoplay. W menu wszystkich podstron jest przycisk „Obejrzyj film”.
+
+Kalkulator ma wspólny wybór metalu nad tabelą (gold/silver/palladium/platinum). Zmiana metalu przełącza tabelę cen, notowanie `metals[metal].spot`, listę prób i wycenę. Brak danych jednego metalu blokuje wyłącznie jego wycenę i nie przenosi stawek z innego metalu.
