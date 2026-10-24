@@ -16,3 +16,5 @@
 - Właściciel potwierdził wyposażenie używanego urządzenia w precyzyjny kolimator 0,6 mm i autofocus. Eksponować te parametry na stronie głównej i w technologii. Nie przedstawiać nieudokumentowanego światowego rankingu jako faktu.
 
 - Właściciel podał, że Helmut Fischer potwierdził mu wykorzystanie urządzeń marki przez urzędy probiercze także na świecie. W opisach stosujemy „w całej Polsce i na świecie”. To informacja przekazana przez właściciela; nie jest to niezależna weryfikacja ani stwierdzenie, że każdy urząd na świecie korzysta z identycznego modelu.
+
+- Właściciel poinformował po rozmowie z urzędem probierczym, że urząd korzysta z tego samego modelu GOLDSCOPE SD® 300. Można komunikować zgodność modelu z tym urzędem; nie rozciągać tej informacji na każdy urząd i nie wyprowadzać gwarancji identycznej dokładności każdego pomiaru bez danych o warunkach i kalibracji.
