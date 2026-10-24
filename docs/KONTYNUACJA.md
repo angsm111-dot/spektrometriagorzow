@@ -38,3 +38,5 @@
 Test nawigacji mobilnej: `SITE_URL=http://127.0.0.1:8000 node tests/navigation.cjs` przy działającym serwerze i Playwright.
 
 Responsywność: `SITE_URL=http://127.0.0.1:8000 node tests/responsive.cjs` sprawdza wszystkie podstrony na 7 szerokościach (320–1440 px), wychodzenie treści poza ekran i obcięty tekst. Test używa danych kontrolowanych. Ostatnia kontrola obejmowała też emulację dotyku, menu oraz kalkulator; nie jest testem na fizycznym iPhonie/Safari. Pola formularza mobilnego mają minimum 16 px.
+
+Mobilna strona główna (do 700 px): nagłówek i zdanie o urzędach probierczych, bezpośrednio potem zdjęcie urządzenia, następnie szczegóły i przyciski. Układ desktopowy pozostawiony bez zmian (porównanie zrzutów przed/po). Nie przesuwać zdjęcia za długi opis na telefonie.
