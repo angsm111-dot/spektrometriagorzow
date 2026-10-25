@@ -57,3 +57,5 @@ Ostatnia decyzja właściciela: główna zawiera tylko hero (slogan, pierwsze zd
 Najnowsza korekta głównej: przywrócono samo drugie ujęcie `Screenshot_134.jpg`. Na telefonie kolejność to: nagłówek i slogan, pierwsze zdjęcie, pasek SDD/parametry, drugie zdjęcie, opis i przyciski. Bez dawnych kafelków działów, dodatkowego opisu i sekcji cennika.
 
 Główna na desktopie (od 981 px) została uproszczona: nagłówek „Twoje złoto. Najlepszy sprzęt. Helmut Fischer.”, zdanie o pierwszym wyborze w Gorzowie, krótka informacja o marce w urzędach, jedno duże zdjęcie oraz przyciski telefonu i filmu. Drugie zdjęcie, parametry i długi opis są tam ukryte. Układ mobilny zachowany bez zmian (potwierdzone identycznym zrzutem). Nie przedstawiać „najlepsi w Gorzowie” jako udokumentowanego rankingu bez źródła.
+
+Zdjęcia blogowe: każdy z ośmiu artykułów ma własny, niepowtarzający się obraz. Zmieniono ilustracje w poradnikach o próbach złota, wycenie, platynie/palladzie oraz biżuterii/monetach/sztabkach. Zdjęcie w artykule i miniatura jego karty w `blog.html` muszą wskazywać ten sam plik; między artykułami pliki muszą być różne.

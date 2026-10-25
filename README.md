@@ -55,6 +55,6 @@ Kalkulator ma wspólny wybór metalu nad tabelą (gold/silver/palladium/platinum
 ## Blog i lokalne SEO
 Blog zawiera osiem osobnych artykułów HTML z unikalnymi tytułami, opisami, nagłówkami H1 oraz danymi Article w JSON-LD. Lista artykułów jest w `blog.html` (CollectionPage / ItemList). Frazy lokalne są wplecione w treść, bez powielania identycznych tekstów.
 
-Tematy: podstawy XRF, badanie złota w Gorzowie, próby złota, przygotowanie do wyceny, badanie srebra, platyna i pallad, kolimator/autofocus/SDD oraz przygotowanie biżuterii, monet i sztabek. Trzy ilustracje w `assets/blog/` są wygenerowanymi zdjęciami ilustracyjnymi w WebP; zdjęcie spektrometru pozostaje oryginalnym plikiem właściciela.
+Tematy: podstawy XRF, badanie złota w Gorzowie, próby złota, przygotowanie do wyceny, badanie srebra, platyna i pallad, kolimator/autofocus/SDD oraz przygotowanie biżuterii, monet i sztabek. Każdy z ośmiu artykułów ma inne zdjęcie, spójne z miniaturą na liście bloga. Siedem obrazów w `assets/blog/` to wygenerowane zdjęcia ilustracyjne w WebP; zdjęcie spektrometru pozostaje oryginalnym plikiem właściciela. Nie powtarzać tej samej ilustracji w różnych artykułach.
 
 Po ustaleniu docelowej domeny można uzupełnić absolutne adresy canonical, sitemap i zgłosić witrynę do Google Search Console. Nie wpisywać domeny na podstawie domysłów ani nie gwarantować pozycji w wynikach wyszukiwania.
