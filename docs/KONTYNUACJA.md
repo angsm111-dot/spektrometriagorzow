@@ -61,3 +61,5 @@ Główna na desktopie (od 981 px) została uproszczona: nagłówek „Twoje zło
 Zdjęcia blogowe: każdy z ośmiu artykułów ma własny, niepowtarzający się obraz. Zmieniono ilustracje w poradnikach o próbach złota, wycenie, platynie/palladzie oraz biżuterii/monetach/sztabkach. Zdjęcie w artykule i miniatura jego karty w `blog.html` muszą wskazywać ten sam plik; między artykułami pliki muszą być różne.
 
 Najnowsza prośba: pod hero na głównej jest tylko krótki blok „Przyjdź. Sprawdź. Poznaj wynik.” i jedno zdanie o wizycie — bez dodatkowych przycisków, cennika, kafelków i nowej sekcji oferty. Użytkownik wyjaśnił, że uwaga o „Co przyjmujemy” nie dotyczy tej pracy; nie kontynuować tego wątku.
+
+Dodano dziewiąty artykuł: `detektory-sdd-spektrometr-gorzow.html` (około 2000 znaków), z osobną ilustracją poglądową detektora, frazą „spektrometr Gorzów”, linkami do usług, canonical, Article JSON-LD i wpisem sitemap. Zalety SDD opisane konkretnie bez bezwarunkowego światowego rankingu detektorów.
