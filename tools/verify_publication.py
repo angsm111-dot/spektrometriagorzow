@@ -5,6 +5,7 @@ from urllib.parse import urlsplit, urljoin, urlencode
 from urllib.request import Request, urlopen
 import argparse
 import os
+import re
 import time
 
 class Links(HTMLParser):
@@ -30,6 +31,7 @@ def fetch(url, version, cache_bust=True):
         text = response.read().decode('utf-8')
         observations.append({
             'url': response.url,
+            'build': (re.search(r'<meta name="deployment-version" content="([^"]*)">', text).group(1) if re.search(r'<meta name="deployment-version" content="([^"]*)">', text) else 'missing'),
             'headers': {key: response.headers.get(key, '') for key in [
                 'Server', 'Cache-Control', 'Age', 'X-LiteSpeed-Cache', 'CF-Cache-Status',
                 'ETag', 'Last-Modified', 'X-Cache', 'Via'
@@ -65,14 +67,20 @@ def verify(base, version):
     uncached = Links()
     uncached.feed(fetch(urljoin(base, 'blog.html'), version))
     summarize(public, uncached, article_names)
+    info = '; '.join(f'{item["url"]}: build={item["build"]}, server={item["headers"].get("Server", "")}, cache={item["headers"].get("Cache-Control", "")}, age={item["headers"].get("Age", "")}' for item in observations[-2:])
+    print(f'::notice title=Blog versions::ordinary={len(public.articles & article_names)}; uncached={len(uncached.articles & article_names)}; {info}', flush=True)
     missing = article_names - public.articles
     if missing:
         raise ValueError('Ordinary blog URL is missing: ' + ', '.join(sorted(missing)))
-    for name in sorted(article_names):
-        content = fetch(urljoin(base, name), version)
+    for path in sorted(root.glob('*.html')):
+        page = '' if path.name == 'index.html' else path.name
+        content = fetch(urljoin(base, page), version, cache_bust=False)
+        marker = f'<meta name="deployment-version" content="{version}">'
+        if marker not in content:
+            raise ValueError('Public page has an older deployment version: ' + (page or '/'))
         if '<h1>' not in content or 'SEZAM' not in content:
-            raise ValueError('Unexpected article response: ' + name)
-    print(f'PASS: public blog lists and serves all {len(article_names)} articles', flush=True)
+            raise ValueError('Unexpected public page response: ' + path.name)
+    print(f'PASS: public blog lists {len(article_names)} articles; all HTML pages match deployment {version}', flush=True)
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
