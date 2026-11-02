@@ -1,0 +1,61 @@
+name: Deploy website to JDM
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy-jdm-production
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    name: Publish static website
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out website
+        uses: actions/checkout@v4
+
+      - name: Package production files
+        run: |
+          python3 tools/package_site.py "$RUNNER_TEMP/spektrometrgorzow-strona.zip"
+          mkdir -p "$RUNNER_TEMP/site"
+          python3 - "$RUNNER_TEMP/spektrometrgorzow-strona.zip" "$RUNNER_TEMP/site" <<'PY'
+          import sys
+          import zipfile
+          with zipfile.ZipFile(sys.argv[1]) as archive:
+              archive.extractall(sys.argv[2])
+          PY
+          test -s "$RUNNER_TEMP/site/index.html"
+
+      - name: Install SFTP client
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes lftp
+
+      - name: Publish to JDM
+        env:
+          JDM_SFTP_HOST: ${{ secrets.JDM_SFTP_HOST }}
+          JDM_SFTP_PORT: ${{ secrets.JDM_SFTP_PORT }}
+          JDM_SFTP_USERNAME: ${{ secrets.JDM_SFTP_USERNAME }}
+          JDM_SFTP_PASSWORD: ${{ secrets.JDM_SFTP_PASSWORD }}
+        run: |
+          set -Eeuo pipefail
+          for name in JDM_SFTP_HOST JDM_SFTP_PORT JDM_SFTP_USERNAME JDM_SFTP_PASSWORD; do
+            if [ -z "${!name:-}" ]; then
+              echo "::error::Missing GitHub Actions secret: $name"
+              exit 1
+            fi
+          done
+          mkdir -p "$HOME/.ssh"
+          chmod 700 "$HOME/.ssh"
+          ssh-keyscan -T 15 -p "$JDM_SFTP_PORT" "$JDM_SFTP_HOST" >> "$HOME/.ssh/known_hosts"
+          chmod 600 "$HOME/.ssh/known_hosts"
+          export LFTP_PASSWORD="$JDM_SFTP_PASSWORD"
+          lftp --env-password --user "$JDM_SFTP_USERNAME" "sftp://$JDM_SFTP_HOST:$JDM_SFTP_PORT" \
+            -e "set cmd:fail-exit yes; mirror --reverse --delete --verbose $RUNNER_TEMP/site/ public_html/; bye"
