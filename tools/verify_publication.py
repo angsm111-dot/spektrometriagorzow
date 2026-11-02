@@ -21,12 +21,13 @@ class Links(HTMLParser):
 
 observations = []
 
-def fetch(url, version, cache_bust=True):
+def fetch(url, version, cache_bust=True, revalidate=False):
     headers = {'User-Agent': 'SEZAM-publication-check/1.0'}
     if cache_bust:
         separator = '&' if '?' in url else '?'
         url += separator + urlencode({'deployment': version})
-        headers.update({'Cache-Control': 'no-cache', 'Pragma': 'no-cache'})
+    if cache_bust or revalidate:
+        headers.update({'Cache-Control': 'no-cache, max-age=0', 'Pragma': 'no-cache'})
     with urlopen(Request(url, headers=headers), timeout=20) as response:
         text = response.read().decode('utf-8')
         observations.append({
@@ -87,7 +88,16 @@ if __name__ == '__main__':
     parser.add_argument('--base', default='https://www.spektrometrgorzow.pl/')
     parser.add_argument('--version', required=True)
     parser.add_argument('--attempts', type=int, default=4)
+    parser.add_argument('--revalidate', action='store_true')
     args = parser.parse_args()
+    if args.revalidate:
+        root = Path(__file__).resolve().parent.parent
+        for page in sorted(root.glob('*.html')):
+            path = '' if page.name == 'index.html' else page.name
+            try:
+                fetch(urljoin(args.base.rstrip('/') + '/', path), args.version, cache_bust=False, revalidate=True)
+            except Exception as error:
+                print(f'HTTP cache revalidation failed for {page.name}: {error}', flush=True)
     for attempt in range(args.attempts):
         try:
             verify(args.base.rstrip('/') + '/', args.version)
