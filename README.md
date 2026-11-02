@@ -58,3 +58,6 @@ Blog zawiera osiem osobnych artykułów HTML z unikalnymi tytułami, opisami, na
 Tematy: podstawy XRF, badanie złota w Gorzowie, próby złota, przygotowanie do wyceny, badanie srebra, platyna i pallad, kolimator/autofocus/SDD oraz przygotowanie biżuterii, monet i sztabek. Każdy z ośmiu artykułów ma inne zdjęcie, spójne z miniaturą na liście bloga. Siedem obrazów w `assets/blog/` to wygenerowane zdjęcia ilustracyjne w WebP; zdjęcie spektrometru pozostaje oryginalnym plikiem właściciela. Nie powtarzać tej samej ilustracji w różnych artykułach.
 
 Po ustaleniu docelowej domeny można uzupełnić absolutne adresy canonical, sitemap i zgłosić witrynę do Google Search Console. Nie wpisywać domeny na podstawie domysłów ani nie gwarantować pozycji w wynikach wyszukiwania.
+
+## Domena i hosting JDM
+Docelowo: `https://www.spektrometrgorzow.pl/`. Przygotowano canonical, robots i sitemap. Publikacja i DNS wymagają jeszcze weryfikacji w JDM; nie zostały potwierdzone. Zobacz [instrukcję publikacji](docs/HOSTING-JDM.md). Paczkę przygotujesz przez `python3 tools/package_site.py`.
