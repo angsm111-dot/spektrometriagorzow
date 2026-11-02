@@ -1,5 +1,7 @@
 # Kontynuacja projektu SEZAM
 
+**WAŻNE: aktywny tryb maintenance w deployment.json. Domena pokazuje anonimową zaślepkę. Pełny projekt jest zachowany w źródłach do podglądu. Nie przywracaj publikacji live bez wyraźnego polecenia. Zobacz TRYB-BUDOWY.md.**
+
 ## Punkt wyjścia
 - Repozytorium strony: https://github.com/angsm111-dot/spektrometriagorzow — gałąź `main`.
 - Repozytorium panelu cen: https://github.com/angsm111-dot/nowa-skup-zlota-gorzow — gałąź `main`; ostatnia poprawka API `9c16ceb`.

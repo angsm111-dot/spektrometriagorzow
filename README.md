@@ -1,5 +1,7 @@
 # SEZAM LAB — spektrometriagorzow
 
+**Tryb publiczny: zaślepka „Strona w budowie”.** Pełny projekt pozostaje tutaj do dalszej edycji i podglądu. Nie zmieniaj `deployment.json` na `live` bez prośby właściciela. Instrukcja: [tryb budowy i podgląd](docs/TRYB-BUDOWY.md).
+
 Strona promująca badanie **złota (Au), srebra (Ag), palladu (Pd) i platyny (Pt)** spektrometrem **Helmut Fischer GOLDSCOPE SD® 300** z **detektorem SDD**.
 
 ## Informacje biznesowe

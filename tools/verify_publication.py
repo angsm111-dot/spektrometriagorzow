@@ -3,10 +3,12 @@ from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import urlsplit, urljoin, urlencode
 from urllib.request import Request, urlopen
+from urllib.error import HTTPError
 import argparse
 import os
 import re
 import time
+from site_deployment import ROOT, mode, public_pages, owned_assets
 
 class Links(HTMLParser):
     def __init__(self):
@@ -55,7 +57,36 @@ def summarize(normal, uncached, expected):
         lines += ['']
     Path(summary).write_text('\n'.join(lines))
 
+def verify_maintenance(base, version):
+    forbidden = ['sezam', 'fischer', 'pocztowa', '601 775 146', '+48601775146', 'wa.me/']
+    marker = f'<meta name="deployment-version" content="{version}">'
+    for path in public_pages():
+        name = path.relative_to(ROOT).as_posix()
+        route = '' if name == 'index.html' else name
+        content = fetch(urljoin(base, route), version, cache_bust=False)
+        lower = content.lower()
+        if '<h1>Strona w budowie</h1>' not in content or marker not in content:
+            raise ValueError('Maintenance page not active at: ' + (route or '/'))
+        if any(text in lower for text in forbidden):
+            raise ValueError('Company information exposed at: ' + (route or '/'))
+        if 'noindex' not in lower:
+            raise ValueError('Missing noindex at: ' + (route or '/'))
+    for name in owned_assets():
+        request = Request(urljoin(base, name), method='HEAD', headers={'User-Agent': 'Publication-maintenance-check/1.0', 'Cache-Control': 'no-cache'})
+        try:
+            with urlopen(request, timeout=20) as response:
+                raise ValueError('Old public asset still available: ' + name)
+        except HTTPError as error:
+            if error.code not in {403, 404, 410}:
+                raise
+    print(f'::notice title=Maintenance verified::{len(public_pages())} routes show anonymous placeholder; tracked company assets inaccessible; deployment={version}', flush=True)
+    summary = os.environ.get('GITHUB_STEP_SUMMARY')
+    if summary:
+        Path(summary).write_text(f'## Maintenance active\n\nVerified {len(public_pages())} public routes, no company name or phone, noindex and removed tracked assets.\n\nDeployment: `{version}`')
+
 def verify(base, version):
+    if mode() == 'maintenance':
+        return verify_maintenance(base, version)
     root = Path(__file__).resolve().parent.parent
     local = Links()
     local.feed((root / 'blog.html').read_text())

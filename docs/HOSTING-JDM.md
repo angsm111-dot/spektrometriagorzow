@@ -1,5 +1,7 @@
 # Publikacja w JDM
 
+**Obecnie aktywny tryb budowy.** Normalne źródła nie są publikowane na domenie; zobacz [TRYB-BUDOWY.md](TRYB-BUDOWY.md). Mechanizm GitHub → JDM działa, a cache NGINX został wyłączony i wyczyszczony przez właściciela.
+
 Docelowy adres: https://www.spektrometrgorzow.pl/
 Panel podany przez właściciela: https://panel.jdm.pl/
 
