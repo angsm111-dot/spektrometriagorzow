@@ -59,3 +59,6 @@ jobs:
           export LFTP_PASSWORD="$JDM_SFTP_PASSWORD"
           lftp --env-password --user "$JDM_SFTP_USERNAME" "sftp://$JDM_SFTP_HOST:$JDM_SFTP_PORT" \
             -e "set cmd:fail-exit yes; mirror --reverse --verbose $RUNNER_TEMP/site/ public_html/; bye"
+
+      - name: Verify public blog and articles
+        run: python3 tools/verify_publication.py --version "$GITHUB_SHA"
